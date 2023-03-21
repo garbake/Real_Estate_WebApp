@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Property_Image extends Model
 {
     use HasFactory;
+    protected $table = 'property_images';
 
     public function property()
     {
