@@ -35,7 +35,7 @@ class Property extends Model
     //many users  link many property
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class,'favorates')->withTimestamps();
     }
 
 }
