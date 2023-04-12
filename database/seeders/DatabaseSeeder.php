@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
 
 
+        //$this->call(Property_TypeSeeder::class);
         //$this->call(User_RolesTableSeeder::class);
 
 
