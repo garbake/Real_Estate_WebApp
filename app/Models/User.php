@@ -58,7 +58,7 @@ class User extends Authenticatable
     //many users like many properties
     public function like_properties()
     {
-        return $this->belongsToMany(Property::class);
+        return $this->belongsToMany(Property::class, 'favorates')->withTimestamps();
     }
 
 
