@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,13 @@ Route::get('/', function () {
 });
 
 Route::get('/', HomeController::class);
+
+Route::prefix('/property')->group(function () {
+    Route::get('/', [PropertyController::class, 'index']);
+    Route::get('/create', [PropertyController::class, 'create']);
+    Route::post('/', [PropertyController::class, 'store'])->name('property.store');
+});
+
 
 Route::prefix('/user')->group(function () {
     //GET

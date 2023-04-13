@@ -9,8 +9,10 @@ class Location extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['street', 'town', 'parish'];
+
     public function property()
     {
-        return $this->hasOne(Property::class);
+        return $this->belongsTo(Property::class);
     }
 }

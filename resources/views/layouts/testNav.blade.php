@@ -1,5 +1,5 @@
 
-<nav aria-label="Site Header" class="bg-white">
+<nav aria-label="Site Header" class="bg-white border-b border-gray-200">
   <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <div class="md:flex md:items-center md:gap-12">
@@ -66,6 +66,7 @@
               </a>
             </li>
           </ul>
+          
         </nav>
       </div>
 
@@ -92,6 +93,7 @@
                         </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
+                
             </div>
 
 
@@ -119,7 +121,7 @@
 
   <div class="block md:hidden">
       <button
-        class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
+        class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -141,6 +143,7 @@
     </div>
   </div>
 </nav>
+
 
 <script>
   const navItems = document.getElementById("nav-items");
