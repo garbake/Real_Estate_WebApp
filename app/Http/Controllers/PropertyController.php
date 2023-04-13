@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use App\Models\Property;
+use App\Models\Property_Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-//use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 
 class PropertyController extends Controller
@@ -68,7 +69,22 @@ class PropertyController extends Controller
             $property->DisplayImage_url = $cloudinary->getSecurePath();
         }
 
+
         $property->save();
+
+        if ($request->hasFile('property_gallary')) {
+            foreach ($request->file('property_gallary') as $image) {
+                if ($image->isValid()) {
+                    $cloudinary = Cloudinary::upload($image->getRealPath());
+        
+                    $propertyImage = new Property_Image();
+                    $propertyImage->Property_Id = $property->id;
+                    $propertyImage->Image_Url = $cloudinary->getSecurePath();
+        
+                    $propertyImage->save();
+                }
+            }
+        }
     }
 
     /**

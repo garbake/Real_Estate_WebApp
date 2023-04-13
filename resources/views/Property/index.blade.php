@@ -1,5 +1,7 @@
 <x-app-layout>
-<body class="dark:bg-slate-900">
+
+
+<body class="dark:bg-slate-100 ">
 <section class="relative lg:py-24 py-16">
     <div class="container mx-auto px-4" >
         <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
@@ -8,8 +10,8 @@
                 <div class="relative">
                 <img src="{{ asset('assets/house.jpg') }}" alt="">
 
-                <div class="absolute top-4 ltr:right-4 rtl:left-4">
-                    <a href="javascript:void(0)" class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600"><i class="mdi mdi-heart mdi-18px"></i></a>
+                <div class="absolute top-4 right-4 ml-4">
+                    <a href="javascript:void(0)" class="like-btn bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600 p-2"><i class="fa-solid fa-heart fa-lg"></i></a>
                 </div>
                 </div>
 
@@ -19,19 +21,19 @@
                             </div>
 
                             <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
-                                <li class="flex items-center ltr:mr-4 rtl:ml-4">
-                                    <i class="uil uil-compress-arrows text-2xl ltr:mr-2 rtl:ml-2 text-green-600"></i>
-                                    <span>8000sqf</span>
+                                <li class="flex items-center mr-5 ml-4">
+                                    <i class="fa-solid fa-minimize text-2xl text-green-600"></i>
+                                    <span class="ml-2">8000sqf</span>
                                 </li>
 
-                                <li class="flex items-center ltr:mr-4 rtl:ml-4">
-                                    <i class="uil uil-bed-double text-2xl ltr:mr-2 rtl:ml-2 text-green-600"></i>
-                                    <span>4 Beds</span>
+                                <li class="flex items-center mr-5 ml-4">
+                                    <i class="fa-solid fa-bed text-2xl  text-green-600"></i>
+                                    <span class="ml-2">4 Beds</span>
                                 </li>
 
                                 <li class="flex items-center">
-                                    <i class="uil uil-bath text-2xl ltr:mr-2 rtl:ml-2 text-green-600"></i>
-                                    <span>4 Baths</span>
+                                    <i class="fa-solid fa-bath text-2xl  text-green-600"></i>
+                                    <span class="ml-2">4 Baths</span>
                                 </li>
                             </ul>
 
@@ -94,7 +96,7 @@
                                 </li>
 
                                 <li>
-                                    <span class="text-slate-400">Rating</span>
+                                    <span class="text-slate-400">Favourates</span>
                                     <ul class="text-lg font-medium text-amber-400 list-none">
                                         <li class="inline"><i class="mdi mdi-star"></i></li>
                                         <li class="inline"><i class="mdi mdi-star"></i></li>
@@ -108,6 +110,7 @@
                         </div>
                     </div><!--end property content-->
                     
+
                     
                     <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                 <div class="relative">
@@ -231,8 +234,8 @@
                                     <span>8000sqf</span>
                                 </li>
 
-                                <li class="flex items-center ltr:mr-4 rtl:ml-4">
-                                    <i class="uil uil-bed-double text-2xl ltr:mr-2 rtl:ml-2 text-green-600"></i>
+                                <li class="flex items-center ltr:mr-4 rtl:ml-4"> 
+                                    <i class="fa-solid fa-bed-front text-2xl ltr:mr-2 rtl:ml-2 text-green-600"></i>
                                     <span>4 Beds</span>
                                 </li>
 
