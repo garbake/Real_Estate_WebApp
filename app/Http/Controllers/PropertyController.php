@@ -18,8 +18,17 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
-        return view('Property.index');
+        
+        return view('Property.index', [
+
+            'properties' => Property::orderBy('updated_at', 'desc')->get(),
+            
+            
+        ]);
+
+       
+
+        
     }
 
     /**
@@ -89,10 +98,15 @@ class PropertyController extends Controller
 
     /**
      * Display the specified resource.
+     
+
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return view('Property.show', [
+            'properties' => Property::findOrFail($id),
+            'images' => Property_Image::findOrFail($id)
+        ]);
     }
 
     /**

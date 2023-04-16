@@ -25,8 +25,10 @@ Route::get('/', HomeController::class);
 
 Route::prefix('/property')->group(function () {
     Route::get('/', [PropertyController::class, 'index']);
+    Route::get('/{id}', [PropertyController::class, 'show'])->name('property.show');
     Route::get('/create', [PropertyController::class, 'create']);
     Route::post('/', [PropertyController::class, 'store'])->name('property.store');
+
 });
 
 
