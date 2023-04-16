@@ -19,18 +19,18 @@
 
                     <div class="lg:w-1/2 md:w-1/2">
                         <div class="flex">
-                            @foreach ($images as $image )  
+                              
                             
                             <div class="w-1/2 p-1">
                                 <div class="group relative overflow-hidden">
-                                    <img src="{{ $image->Image_Url }}" alt="">
+                                    <img src="{{ $properties->DisplayImage_Url }}" alt="">
                                     <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
                                     <div class="absolute top-1/2 -translate-y-1/2 right-0 left-0 text-center invisible group-hover:visible">
                                         <a href="{{ asset('assets/house.jpg') }}"  data-lightbox="propertyGallery" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full  p-2"><i class="fa-solid fa-camera"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            
 
                             <div class="w-1/2 p-1">
                                 <div class="group relative overflow-hidden">

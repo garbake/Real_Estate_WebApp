@@ -17,7 +17,7 @@
                 </div>
                     <div class="p-6">
                         <div class="pb-6">
-                            <a href="{{ route('property.show', $property->id) }}" class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{$property->Name}},  </a>
+                            <a href="{{ route('property.show', $property->id) }}" class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{$property->Name}} </a>
                         </div>
 
                             <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">

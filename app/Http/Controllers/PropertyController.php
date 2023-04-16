@@ -21,8 +21,7 @@ class PropertyController extends Controller
         
         return view('Property.index', [
 
-            'properties' => Property::orderBy('updated_at', 'desc')->get(),
-            
+            'properties' => Property::orderBy('updated_at', 'desc')->get()
             
         ]);
 
@@ -105,7 +104,7 @@ class PropertyController extends Controller
     {
         return view('Property.show', [
             'properties' => Property::findOrFail($id),
-            'images' => Property_Image::findOrFail($id)
+            
         ]);
     }
 
