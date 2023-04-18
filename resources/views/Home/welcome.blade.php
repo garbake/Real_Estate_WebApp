@@ -19,8 +19,9 @@
       </h1>
 
       <p class="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo
-        tenetur fuga ducimus numquam ea!
+      Whether you're a first-time homebuyer, a seasoned investor, 
+      or simply looking for your dream home, we're here to help you find the 
+      perfect property that fits your needs and budget. Let's get started!
       </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-4">

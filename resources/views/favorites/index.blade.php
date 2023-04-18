@@ -14,3 +14,11 @@
         <p>You have no favorite properties yet.</p>
     @endif
 @endsection
+
+@foreach ($favorites as $favorite)
+    <div>{{ $favorite->property->name }}</div>
+@endforeach
+
+<script src="{{ asset('js/add-to-favorites.js') }}"></script>
+
+
