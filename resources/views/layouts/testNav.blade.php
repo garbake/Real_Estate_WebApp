@@ -17,7 +17,16 @@
                 class="text-gray-500 transition hover:text-gray-500/75"
                 href="/"
               >
-                About
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="text-gray-500 transition hover:text-gray-500/75"
+                href="{{route('property.index')}}"
+              >
+                Properties
               </a>
             </li>
 
@@ -26,7 +35,7 @@
                 class="text-gray-500 transition hover:text-gray-500/75"
                 href="/"
               >
-                Careers
+                About Us
               </a>
             </li>
 
@@ -35,36 +44,24 @@
                 class="text-gray-500 transition hover:text-gray-500/75"
                 href="/"
               >
-                History
+                Contact Us
               </a>
             </li>
 
-            <li>
-              <a
-                class="text-gray-500 transition hover:text-gray-500/75"
-                href="/"
-              >
-                Services
-              </a>
-            </li>
+            
 
-            <li>
-              <a
-                class="text-gray-500 transition hover:text-gray-500/75"
-                href="/"
-              >
-                Projects
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="text-gray-500 transition hover:text-gray-500/75"
-                href="/"
-              >
-                Blog
-              </a>
-            </li>
+            @auth
+            @if(Auth::check())
+              <li>
+                <a
+                  class="text-gray-500 transition hover:text-gray-500/75"
+                  href="/"
+                >
+                  Favourites
+                </a>
+              </li>
+            @endif
+          @endauth
           </ul>
           
         </nav>

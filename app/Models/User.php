@@ -46,7 +46,7 @@ class User extends Authenticatable
     //One user has one user role
     public function user_role()
     {
-        return $this->hasOne(User_Role::class);
+        return $this->belongsTo(User_Role::class);
     }
 
     //a user can have many properties

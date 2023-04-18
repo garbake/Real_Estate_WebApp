@@ -12,24 +12,24 @@ class Property extends Model
     //A Property has a Type
     public function type()
     {
-        return $this->hasOne(Type::class);
+        return $this->hasOne(Type::class, 'id');
     }
 
     //A agent can add multiple porperty
     public function user()
     {
-        return $this->hasOne(Type::class);
+        return $this->belongsTo(Type::class, 'id');
     }
 
     //A Property has a Location
     public function location()
     {
-        return $this->hasOne(Location::class);
+        return $this->hasOne(Location::class, 'id');
     }
 
     public function Images()
     {
-        return $this->hasMany(Property_Image::class);
+        return $this->hasMany(Property_Image::class,);
     }
 
     //many users  link many property

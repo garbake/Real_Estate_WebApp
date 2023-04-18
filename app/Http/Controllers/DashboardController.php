@@ -2,36 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\UsersExport;
-use App\Imports\UsersImport;
+use App\Models\Location;
 use App\Models\Property;
+use App\Models\Property_Image;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        $users = User::orderBy('Name', 'asc')->get();
-        $totalProperties = Property::count();
+        $properties = Property::with('type')->orderBy('Name', 'asc')->get();
+        $totalProperties = $properties->count();
         $totalAgents = User::where('role_id', 1)->count();
         $totalCustomers = User::where('role_id', 3)->count();
-        $totalUsers = $users->count();
 
         
         
 
-        return view('User.index', [
-            'users' => $users,
+        return view('dashboard', [
+            'properties' => $properties,
             'totalProperties' => $totalProperties,
             'totalAgents' => $totalAgents,
-            'totalCustomers' => $totalCustomers,
-            'totalUsers' => $totalUsers,
+            'totalCustomers' => $totalCustomers
         ]);
     }
 
@@ -54,18 +51,30 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
         //
-        return $id;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( string $id)
     {
-        //
+        $propertyTypes = DB::table('type')->pluck('Name', 'id');
+
+        $property = Property::with('location')->where('id', $id)->first();
+        $location = Location::where('id', $property->Location_Id)->first();
+         $images = $property->images;
+
+        return view('property.edit', [
+            'property' => $property,
+            'propertyTypes' => $propertyTypes,
+            'location' => $location,
+            'images' => $images
+            
+            
+        ]);
     }
 
     /**
@@ -74,6 +83,7 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        
     }
 
     /**
@@ -82,24 +92,5 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
-        User::destroy($id);
-        return redirect()->route('dashboard.user')->with('User deleted Successfully');
-    }
-
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function export() 
-    {
-        return Excel::download(new UsersExport, 'users.xlsx');
-    }
-       
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function import() 
-    {
-        Excel::import(new UsersImport,request()->file('file'));
-        return back();
     }
 }

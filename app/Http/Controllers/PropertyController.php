@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Models\Property;
 use App\Models\Property_Image;
+use App\Models\Type;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -93,6 +95,8 @@ class PropertyController extends Controller
                 }
             }
         }
+
+        return redirect()->route('property.index')->with('Propert Added Successfully');
     }
 
     /**
@@ -102,10 +106,17 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        return view('Property.show', [
-            'properties' => Property::findOrFail($id),
-            
-        ]);
+        
+        
+
+        $properties = Property::with('location', 'user', 'type')->where('id', $id)->first();
+        $location = Location::where('id', $properties->Location_Id)->first();
+        $user = User::where('id', $properties->Agent_Id)->first();
+        $propertytype = Type::where('id', $properties->Type_Id)->first();
+         $images = $properties->images;
+        
+        
+        return view('Property.show', compact('properties' ,'location','images', 'user', 'propertytype'));
     }
 
     /**
@@ -122,6 +133,42 @@ class PropertyController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        
+
+        $location = Location::firstOrCreate([
+            'street' => $request->input('street'),
+            'town' => $request->input('town'),
+            'parish' => $request->input('parish'),
+        ]);
+
+        $DisplayImage_url = null;
+        if ($request->hasFile('property_dp') && $request->file('property_dp')->isValid()) {
+            $image = $request->file('property_dp');
+            $cloudinary = Cloudinary::upload($image->getRealPath());
+            $DisplayImage_url = $cloudinary->getSecurePath();
+        }
+        else {
+            $property = Property::find($id);
+            $DisplayImage_url = $property->DisplayImage_Url;
+        }
+
+        Property::where('id', $id)->update ([
+            'Name' => $request->property_name,
+            'Size' => $request->property_size,
+            'Price' => $request->price,
+            'Currency' => $request->currency,
+            'Number_Bedrooms' => $request->Num_of_Bedroom,
+            'Number_Bathrooms' => $request->Num_of_Bathroom,
+            'Number_Kitchen' => $request->Num_of_Kitchen,
+            'Type_Id' => $request->type,
+            'Description' => $request->description,
+            'Location_Id' => $location->id,
+            'DisplayImage_Url' => $DisplayImage_url
+
+            
+        ]);
+
+        return redirect()->route('dashboard.index')->with('Property Updated Successfully');
     }
 
     /**
@@ -130,5 +177,8 @@ class PropertyController extends Controller
     public function destroy(string $id)
     {
         //
+        //dd('test');
+        Property::destroy($id);
+        return redirect()->route('dashboard.index')->with('Property deleted Successfully');
     }
 }

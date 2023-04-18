@@ -9,7 +9,7 @@
         @foreach($properties as $property)
                 <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                 <div class="relative">
-                <img src="{{ $property->DisplayImage_Url}}" alt="" class="transition duration-500 group-hover:scale-105">
+                <img src="{{ $property->DisplayImage_Url}}" alt="" class="w-full h-64 object-cover transition duration-500 group-hover:scale-105">
 
                 <div class="absolute top-4 right-4 ml-4">
                     <a href="javascript:void(0)" class="like-btn bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600 p-2"><i class="fa-solid fa-heart fa-lg"></i></a>
@@ -17,7 +17,7 @@
                 </div>
                     <div class="p-6">
                         <div class="pb-6">
-                            <a href="{{ route('property.show', $property->id) }}" class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{$property->Name}} </a>
+                            <a href="{{ route('property.show', $property->id) }}" class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{$property->Name}}, </a>
                         </div>
 
                             <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
@@ -40,7 +40,7 @@
                             <ul class="pt-6 flex justify-between items-center list-none">
                                 <li>
                                     <span class="text-slate-400">Price</span>
-                                    <p class="text-lg font-medium">${{$property->Size}} {{$property->Currency}}</p>
+                                    <p class="text-lg font-medium">${{$property->Price}} {{$property->Currency}}</p>
                                 </li>
 
                                 <li>

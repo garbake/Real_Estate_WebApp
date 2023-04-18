@@ -122,10 +122,10 @@
 
         </div>
 
-          <div class="mt-4">
+          <div class="mt-4 text-center">
             <button
               type="submit"
-              class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+              class="inline-block w-full rounded-lg bg-teal-600 hover:bg-teal-700 px-5 py-3 font-medium text-white sm:w-auto"
             >
               Send Enquiry
             </button>
