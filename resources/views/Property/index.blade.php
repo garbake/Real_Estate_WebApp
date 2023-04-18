@@ -12,7 +12,8 @@
                 <img src="{{ $property->DisplayImage_Url}}" alt="" class="transition duration-500 group-hover:scale-105">
 
                 <div class="absolute top-4 right-4 ml-4">
-                    <a href="javascript:void(0)" class="like-btn bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600 p-2"><i class="fa-solid fa-heart fa-lg"></i></a>
+                <a href="javascript:void(0)" class="btn btn-primary add-to-favorites bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600 p-2" data-property-id="{{ $property->id }}"><i class="fa-solid fa-heart fa-lg"></i></a>
+
                 </div>
                 </div>
                     <div class="p-6">
@@ -63,7 +64,29 @@
                     
         </div>
     </div>
+    
 </section>
+
+<script>
+    $(document).on('click', '.add-to-favorites', function () {
+    var propertyId = $(this).data('property-id');
+    $.ajax({
+        url: '/favorites/add',
+        type: 'POST',
+        data: {property_id: propertyId},
+        success: function (response) {
+            alert('Added to favorites');
+        },
+        error: function (xhr, status, error) {
+            alert('Error: ' + error);
+        }
+    });
+});
+</script>
+
+
 </body>
+
+
 
 </x-app-layout>
