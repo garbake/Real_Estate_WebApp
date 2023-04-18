@@ -19,4 +19,6 @@
     <div>{{ $favorite->property->name }}</div>
 @endforeach
 
+<script src="{{ asset('js/add-to-favorites.js') }}"></script>
+
 
