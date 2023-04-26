@@ -61,6 +61,26 @@
                 </a>
               </li>
             @endif
+        
+            @if(Auth::user()->role_id == 1)
+              <li>
+                <a
+                  class="text-gray-500 transition hover:text-gray-500/75"
+                  href="{{route('dashboard.index')}}"
+                >
+                 Adimn Dashboard
+                </a>
+              </li>
+              @elseif (Auth::user()->role_id == 2)
+              <li>
+                <a
+                  class="text-gray-500 transition hover:text-gray-500/75"
+                  href="{{route('agentdashboard.index')}}"
+                >
+                 Agent Dashboard
+                </a>
+              </li>
+            @endif
           @endauth
           </ul>
           

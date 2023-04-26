@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\AgentPropertyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FavoriteController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -35,11 +37,11 @@ Route::prefix('/favorites')->group(function () {
 Route::prefix('/property')->group(function () {
     Route::get('/', [PropertyController::class, 'index'])->name('property.index');
 
-    Route::get('/create', [PropertyController::class, 'create'])->name('property.create');
+    
     Route::get('/{id}', [PropertyController::class, 'show'])->name('property.show');
 
     
-    Route::get('/edit/{id}', [PropertyController::class, 'edit'])->name('property.edit');
+    Route::get('/edit/{id}', [PropertyController::class, 'edit'])->middleware(['auth','isAdmin','isAgent'])->name('property.edit');
     
     
     
@@ -48,32 +50,35 @@ Route::prefix('/property')->group(function () {
 });
 
 
-Route::prefix('/user')->group(function () {
-    //GET
-    Route::get('/', [UserController::class, 'index'])->name('user.index');
-    Route::get('/{id}', [UserController::class, 'show']);  //GET Specific User
+// Route::prefix('/user')->group(function () {
+//     //GET
+//     Route::get('/', [UserController::class, 'index'])->name('user.index');
+//     Route::get('/{id}', [UserController::class, 'show']);  //GET Specific User
 
-    //POST
-    Route::get('/create', [UserController::class, 'create']);
-    Route::post('/', [UserController::class, 'store']); 
+//     //POST
+//     Route::get('/create', [UserController::class, 'create']);
+//     Route::post('/', [UserController::class, 'store']); 
 
-    //PUT OR PATCH
-    Route::get('/edit/{id}', [UserController::class, 'edit']);
-    Route::patch('/{id}', [UserController::class, 'update']); 
+//     //PUT OR PATCH
+//     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+//     Route::patch('/{id}', [UserController::class, 'update'])->name('user.update'); 
 
-    //DELETE
-    Route::delete('/{id}', [UserController::class, 'destroy']); 
-});
+//     //DELETE
+//     Route::delete('/{id}', [UserController::class, 'destroy']); 
+// });
 
 
-Route::prefix('/dashboard')->group(function () {
+Route::prefix('/dashboard')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
-    
+    Route::get('/create', [PropertyController::class, 'create'])->name('dashdoardproperty.create');
     Route::get('/edit/{id}', [DashboardController::class, 'edit'])->name('property.edit');
     Route::patch('/{id}', [PropertyController::class, 'update'])->name('property.update');
 
     Route::delete('/{id}', [PropertyController::class, 'destroy'])->name('property.destroy'); 
+
+    Route::get('/manage-property', [AgentPropertyController::class, 'index'])->name('manageproperty.index');
+
     
     //user
     Route::get('/user', [UserController::class, 'index'])->name('dashboard.user');
@@ -88,8 +93,22 @@ Route::prefix('/dashboard')->group(function () {
     Route::post('/users-import', [UserController::class,'import'])->name('users.import');
     
    
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
+
+
+
+Route::prefix('/agentdashboard')->middleware(['auth','isAgent'])->group(function () {
+
+    Route::get('/', [AgentPropertyController::class, 'index'])->name('agentdashboard.index');
+    Route::get('/create', [PropertyController::class, 'create'])->name('agentproperty.create');
+    Route::get('/edit/{id}', [DashboardController::class, 'edit'])->name('property.edit');
+    Route::patch('/{id}', [PropertyController::class, 'update'])->name('property.update');
+    Route::delete('/{id}', [PropertyController::class, 'destroy'])->name('property.destroy'); 
+
+    
+
+})->name('agentdashboard');
 
 
 
@@ -98,6 +117,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
  
 });

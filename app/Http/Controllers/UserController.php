@@ -7,6 +7,9 @@ use App\Imports\UsersImport;
 use App\Models\Property;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -66,6 +69,13 @@ class UserController extends Controller
     public function edit(string $id)
     {
         //
+        $role = DB::table('user_role')->pluck('RoleName', 'id');
+        $user = User::where('id',$id)->first();
+
+        return view('user.edit',[
+            'role' => $role,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -73,7 +83,33 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+        ]);
+        
+        // Retrieve the user you want to edit
+        $user = User::findOrFail($id);
+        
+        // Update the user's name and email
+        $user->fill([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'role_id' => $request->input('role_id')
+        ]);
+        
+        // Check if a new password was provided
+        if ($request->filled('password')) {
+            // If a new password was provided, update the user's password
+            $user->password = Hash::make($request->input('password'));
+        }
+        
+        // Save the changes
+        $user->save();
+
+        return redirect(route('dashboard.user'));
     }
 
     /**

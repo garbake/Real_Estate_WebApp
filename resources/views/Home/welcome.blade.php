@@ -26,7 +26,7 @@
 
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
-          href="#"
+          href="{{route('property.index')}}"
           class="block w-full rounded  bg-teal-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-teal-500 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto transition-colors duration-300 ease-in-out"
         >
           Get Started

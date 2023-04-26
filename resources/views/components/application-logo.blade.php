@@ -1,1 +1,1 @@
-<img  src="{{asset('assets/The Ice House-Building.png')}}" height="100px" width="150px" >
+<img  src="{{asset('assets/The Builder.png')}}" width="100px" >

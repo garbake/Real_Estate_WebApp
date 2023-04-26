@@ -52,7 +52,7 @@ class User extends Authenticatable
     //a user can have many properties
     public function properties()
     {
-        return $this->hasMany(Property::class);
+        return $this->hasMany(Property::class, 'id');
     }
 
     //many users like many properties

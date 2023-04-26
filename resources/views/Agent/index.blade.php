@@ -1,87 +1,60 @@
 <x-dashboard-layout>
-    
-                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                        Dashboard
-                    </h2>
+
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+          Dashboard/My Properties
+    </h2>
                     
-                    <!-- Cards -->
-                    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                            <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-                            <i class="fa-solid fa-users-viewfinder text-orange-600"></i>
-                            </div>
-                            <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Total Agents
-                                </p>
-                                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                {{ $totalAgents }}
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                            <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                            <i class="fa-solid fa-user-group text-green-600"></i>
-                            </div>
-                            <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Total Customers
-                                </p>
-                                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                {{ $totalCustomers }}
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                            <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
-                            <i class="fa-solid fa-house text-blue-600"></i>
-                            </div>
-                            <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Total Properties
-                                </p>
-                                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                {{ $totalProperties }}
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                            <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <!-- <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Pending contacts
-                                </p>
-                                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                    35
-                                </p>
-                            </div> -->
-                        </div>
-                    </div>
+        <!-- Cards -->
+       <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+           
+           <!-- Card -->
+           <!-- <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+               <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+               <i class="fa-solid fa-user-group text-green-600"></i>
+               </div>
+               <div>
+                   <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                       Total Customers
+                   </p>
+                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                   99
+                   </p>
+               </div>
+           </div> -->
+           <!-- Card -->
+           <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+               <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
+               <i class="fa-solid fa-house text-blue-600"></i>
+               </div>
+               <div>
+                   <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                       Total Properties
+                   </p>
+                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                   {{$totalProperties}}
+                   </p>
+               </div>
+           </div>
+           <!-- Card -->
+          
+       </div>
 
-                    <div class="flex flex-col gap-4  sm:mt-0 sm:flex-row sm:items-center justify-end">
+       <div class="flex flex-col gap-4  sm:mt-0 sm:flex-row sm:items-center justify-end">
 
-                      <label class=" rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-500 transition hover:text-gray-700 focus:outline-none focus:ring cursor-pointer">
-                        <span class="text-sm font-medium">Import Property</span>
-                        <i class="fa-solid fa-file-csv"></i>
-                      </label>
-                    </form>
+         <label class=" rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-500 transition hover:text-gray-700 focus:outline-none focus:ring cursor-pointer">
+           <span class="text-sm font-medium">Import Property</span>
+           <i class="fa-solid fa-file-csv"></i>
+         </label>
+       </form>
 
-                        <a href="{{route('dashdoardproperty.create' )}}" class="block rounded-lg bg-teal-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-teal-700 focus:outline-none focus:ring"
-                        type="button">
-                        Add Property
-                        </a>
-                    </div>
+           <a href="{{route('agentproperty.create' )}}" class="block rounded-lg bg-teal-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-teal-700 focus:outline-none focus:ring"
+           type="button">
+           Add Property
+           </a>
+       </div>
 
 
-            <div class="w-full overflow-hidden rounded-lg shadow-xs border">
+         <div class="w-full overflow-hidden rounded-lg shadow-xs border">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                   <thead>
@@ -170,17 +143,8 @@
                                 <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
                                 <header class="flex justify-end">
                                   <button
-                                    class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
-                                    aria-label="close"
-                                    @click="closeModal"
-                                  >
-                                    <svg
-                                      class="w-4 h-4"
-                                      fill="currentColor"
-                                      viewBox="0 0 20 20"
-                                      role="img"
-                                      aria-hidden="true"
-                                    >
+                                    class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700" aria-label="close" @click="closeModal">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
                                       <path
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"
@@ -224,22 +188,6 @@
                               </div>
                             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                           </form>
                         </div>
                       </td>
@@ -250,6 +198,5 @@
                 </table>
               </div>
             </div>
-            
-                
+
 </x-dashboard-layout>

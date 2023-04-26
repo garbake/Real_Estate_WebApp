@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use GuzzleHttp\Middleware;
+
 
 
 class PropertyController extends Controller
@@ -96,7 +98,15 @@ class PropertyController extends Controller
             }
         }
 
-        return redirect()->route('property.index')->with('Propert Added Successfully');
+        
+
+        if(Auth::user()->role_id == 1){
+
+            return redirect()->route('dashboard.index')->with('Property Added Successfully');
+            }
+            else
+            return redirect()->route('agentdashboard.index')->with('Property Added Successfully');
+
     }
 
     /**
@@ -168,7 +178,28 @@ class PropertyController extends Controller
             
         ]);
 
+
+        if ($request->hasFile('property_gallary')) {
+            foreach ($request->file('property_gallary') as $image) {
+                if ($image->isValid()) {
+                    $cloudinary = Cloudinary::upload($image->getRealPath());
+        
+                    $propertyImage = new Property_Image();
+                    $propertyImage->Property_Id = $property->id;
+                    $propertyImage->Image_Url = $cloudinary->getSecurePath();
+        
+                    $propertyImage->save();
+                }
+            }
+        }
+
+        if(Auth::user()->role_id == 1){
+
         return redirect()->route('dashboard.index')->with('Property Updated Successfully');
+        }
+        else
+        return redirect()->route('agentdashboard.index')->with('Property Updated Successfully');
+
     }
 
     /**
@@ -179,6 +210,14 @@ class PropertyController extends Controller
         //
         //dd('test');
         Property::destroy($id);
-        return redirect()->route('dashboard.index')->with('Property deleted Successfully');
+
+        if(Auth::user()->role_id == 1){
+
+            return redirect()->route('dashboard.index')->with('Property deleted Successfully');
+            }
+            else
+            return redirect()->route('agentdashboard.index')->with('Property deleted Successfully');
+
+        
     }
 }
